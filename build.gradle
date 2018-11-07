@@ -1,0 +1,27 @@
+group 'com.agileengine'
+version '0.0.1'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jsoup:jsoup:1.11.2'
+    compile 'org.slf4j:slf4j-log4j12:1.7.25'
+    compile 'org.projectlombok:lombok:1.18.4'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                'Implementation-Version': version,
+                'Main-Class': 'com.agileengine.app.Main'
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
